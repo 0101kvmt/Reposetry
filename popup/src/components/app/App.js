@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-class Reposetry extends Component {
-  constructor(props)  {
+class App extends Component {
+  constructor(props) {
     super(props);
   }
 
@@ -17,9 +17,9 @@ class Reposetry extends Component {
   render() {
     return (
       <div>
-        Count: {this.props.count}
+        Click Count: {this.props.count}
       </div>
-    )
+    );
   }
 }
 
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Reposetry);
+export default connect(mapStateToProps)(App);

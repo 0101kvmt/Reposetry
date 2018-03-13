@@ -3,11 +3,11 @@ const path = require('path');
 module.exports = {
 
   entry: [
-    './content/src/index.js'
+    './popup/src/js/index.js'
   ],
 
   output: {
-    filename: 'content.js',
+    filename: 'popup.js',
     path: path.join(__dirname, '../', 'build'),
     publicPath: '/'
   },
@@ -26,18 +26,6 @@ module.exports = {
         include: path.join(__dirname, 'src'),
         query: {
           presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader'
-      },
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
         }
       }
     ]
