@@ -1,11 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-<<<<<<< HEAD
-import App from './../components/app/App';
-=======
 import App from './../components/app/App.js';
->>>>>>> get chrome tab query
 
 import {Store} from 'react-chrome-redux';
 import {Provider} from 'react-redux';

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import count from './count';
+import reposetry from './reposetry';
 
 export default combineReducers({
-  count
+  reposetry
 })

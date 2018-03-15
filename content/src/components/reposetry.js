@@ -9,7 +9,7 @@ class Reposetry extends Component {
   componentDidMount() {
     document.addEventListener('click', () => {
       this.props.dispatch({
-        type: 'ADD_COUNT'
+        type: 'ADD_URL'
       });
     });
   }
@@ -17,7 +17,7 @@ class Reposetry extends Component {
   render() {
     return (
       <div>
-        Count: {this.props.count}
+        Reposetry: {this.props.reposetry}
       </div>
     )
   }
@@ -25,7 +25,7 @@ class Reposetry extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.count
+    reposetry: state.reposetry
   };
 };
 
