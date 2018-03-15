@@ -12,6 +12,12 @@ anchor.id = 'reposetry-anchor';
 
 document.body.insertBefore(anchor, document.body.childNodes[0]);
 
+chrome.contextMenus.create({
+ title: "Reposetry",
+ contexts:["selection"],  // ContextType
+ onclick: console.log("hi") // A callback function
+});
+
 proxyStore.ready().then(() => {
   render(
     <Provider store={proxyStore}>

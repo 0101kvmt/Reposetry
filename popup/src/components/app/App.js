@@ -15,7 +15,14 @@ class App extends Component {
   }
 
   updateUrl() {
-    console.log("updated props", this.props);
+
+    console.log("updated this.props", this.props);
+    const repoList = 'ReposetryList';
+
+    chrome.storage.sync.get('ReposetryList', function(val) {
+      const jsonVal = JSON.stringify(val);
+      console.log('Updated Chrome Repo list ' + jsonVal);
+    });
   }
 
   storeUrl(props) {
@@ -26,10 +33,16 @@ class App extends Component {
         const repoList = this.props.reposetry.Reposetry;
         repoList.push(url);
         console.log("repo", repoList);
+
         this.props.dispatch({
           type: 'ADD_URL',
           Reposetry: repoList
         });
+
+        chrome.storage.sync.set({ReposetryList: repoList}, function(val) {
+         console.log('Repositry list is stored to chrome as: ' + val);
+       });
+
       }
     }.bind(this));
   }
