@@ -1,8 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {render} from 'react-dom';
+import {Provider} from 'react-redux';
+import {Store} from 'react-chrome-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from './App.js';
+
+const proxyStore = new Store({portName: 'reposetry'});
+
+const anchor = document.createElement('div');
+anchor.id = 'reposetry-anchor';
+
+document.body.insertBefore(anchor, document.body.childNodes[0]);
+
+proxyStore.ready().then(() => {
+  render(
+    <Provider store={proxyStore}>
+      <App/>
+    </Provider>
+   , document.getElementById('reposetry-anchor'));
+});

@@ -11,12 +11,22 @@ class App extends Component {
       this.props.dispatch({
         type: 'ADD_COUNT'
       });
+      console.log("hi");
+      chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+        if(!tabs){
+          console.log("no tabs");
+        } if(tabs){
+          console.log("tabs", tabs);
+          var url = tabs[0].url;
+          console.log("inurl", url);
+        }
+      });
     });
   }
 
   render() {
     return (
-      <div>
+      <div style={{width: 200}}>
         Click Count: {this.props.count}
       </div>
     );

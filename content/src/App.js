@@ -1,27 +1,32 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { Store } from 'react-chrome-redux';
-
-import Reposetry from './components/reposetry';
-import './App.css';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const proxyStore = new Store({portName: 'reposetry'});
+  componentDidMount() {
+    document.addEventListener('click', () => {
+      this.props.dispatch({
+        type: 'ADD_COUNT'
+      });
+    });
+  }
 
-  const anchor = document.createElement('div');
-  anchor.id = 'reposetry-anchor';
-
-  document.body.insertBefore(anchor, document.body.childNodes[0]);
-
-  proxyStore.ready().then(() => {
-    render(
-      <Provider store = {proxyStore}>
-        <Reposetry/>
-      </Provider>
-      , document.getElementById('reposetry-anchor'));
-  });
-
+  render() {
+    return (
+      <div>
+        Count: {this.props.count}
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
+
+export default connect(mapStateToProps)(App);
