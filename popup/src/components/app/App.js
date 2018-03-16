@@ -12,6 +12,17 @@ class App extends Component {
   componentDidMount() {
     document.addEventListener('click', () => {
     });
+    chrome.storage.sync.get('ReposetryList', (val) => {
+      const jsonVal = JSON.stringify(val);
+      console.log("val", val);
+
+      console.log("jsonval", jsonVal);
+      // this.props.dispatch({
+      //   type: 'GET_URL',
+      //   Reposetry: val
+      // });
+    });
+
   }
 
   updateUrl() {
@@ -19,9 +30,9 @@ class App extends Component {
     console.log("updated this.props", this.props);
     const repoList = 'ReposetryList';
 
-    chrome.storage.sync.get('ReposetryList', function(val) {
+    chrome.storage.sync.get('ReposetryList', (val) => {
       const jsonVal = JSON.stringify(val);
-      console.log('Updated Chrome Repo list ' + jsonVal);
+      console.log('Updated Chrome Repo list ' + jsonVal.ReposetryList);
     });
   }
 

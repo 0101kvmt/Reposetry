@@ -7,6 +7,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_URL':
       return {...state, Reposetry: action.Reposetry}
+    case 'GET_URL':
+      return {...state, Reposetry: action.Reposetry}
     default:
       return state;
   }
