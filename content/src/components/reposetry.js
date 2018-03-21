@@ -17,7 +17,10 @@ class Reposetry extends Component {
   render() {
     return (
       <div>
-        Reposetry: {this.props.reposetry}
+        <p>
+          Reposetry: {this.props.reposetry}
+        </p>
+
       </div>
     )
   }

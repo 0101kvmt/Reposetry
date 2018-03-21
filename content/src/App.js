@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import { Modal, ModalContent } from './components/modal';
+
 class App extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.props.dispatch({
-        type: 'ADD_URL'
-      });
-    });
+    console.log("app component loaded");
   }
 
   render() {
     return (
-      <div>
-        Reposetry: {this.props.reposetry}
-      </div>
+      <Modal>
+        <ModalContent>
+          Reposetry: {this.props.reposetry.Reposetry}
+        </ModalContent>
+      </Modal>
     );
   }
 }
