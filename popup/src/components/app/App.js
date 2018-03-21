@@ -13,14 +13,20 @@ class App extends Component {
     document.addEventListener('click', () => {
     });
     chrome.storage.sync.get('ReposetryList', (val) => {
-      const jsonVal = JSON.stringify(val);
-      console.log("val", val);
+      const chromeList = val.ReposetryList;
+      const reducerList = this.props.reposetry.Reposetry
+      if(!chromeList) {
+        this.props.dispatch({
+          type: 'GET_URL',
+          Reposetry: reducerList
+        });
+      } else {
+        this.props.dispatch({
+          type: 'GET_URL',
+          Reposetry: chromeList
+        });
+      }
 
-      console.log("jsonval", jsonVal);
-      // this.props.dispatch({
-      //   type: 'GET_URL',
-      //   Reposetry: val
-      // });
     });
 
   }
@@ -31,8 +37,10 @@ class App extends Component {
     const repoList = 'ReposetryList';
 
     chrome.storage.sync.get('ReposetryList', (val) => {
-      const jsonVal = JSON.stringify(val);
-      console.log('Updated Chrome Repo list ' + jsonVal.ReposetryList);
+      console.log("da val", val);
+      val.ReposetryList.map((m, i) => {
+        console.log(m);
+      });
     });
   }
 
