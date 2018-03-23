@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import { Modal, ModalContent, ModalBlock, ModalText } from './components/modal';
+import { Modal, ModalContent, ModalBlock, ModalText, ModalLink } from './components/modal';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class App extends Component {
     const RepoList = this.props.reposetry.Reposetry.map((r, i) => {
       return (
           <ModalBlock>
-            <ModalText> {r} </ModalText>
+            <ModalText> {r[0]} </ModalText>
+            <ModalLink href={r[1]} target="_blank"> {r[1]} </ModalLink>
           </ModalBlock>
     )});
 

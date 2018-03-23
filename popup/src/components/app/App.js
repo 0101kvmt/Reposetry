@@ -37,7 +37,6 @@ class App extends Component {
     const repoList = 'ReposetryList';
 
     chrome.storage.sync.get('ReposetryList', (val) => {
-      console.log("da val", val);
       val.ReposetryList.map((m, i) => {
         console.log(m);
       });
@@ -47,19 +46,19 @@ class App extends Component {
   storeUrl(props) {
     chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
       if(tabs){
-        var url = tabs[0].url;
-        console.log("current Tab url: ", url);
+        const tabList = [];
+        tabList.push(tabs[0].title, tabs[0].url);
+
         const repoList = this.props.reposetry.Reposetry;
-        repoList.push(url);
-        console.log("repo", repoList);
+        repoList.push(tabList);
 
         this.props.dispatch({
           type: 'ADD_URL',
           Reposetry: repoList
         });
 
-        chrome.storage.sync.set({ReposetryList: repoList}, function(val) {
-         console.log('Repositry list is stored to chrome as: ' + val);
+        chrome.storage.sync.set({ReposetryList: repoList}, function() {
+          console.log('Repositry list is stored to chrome as: ' + repoList);
        });
 
       }

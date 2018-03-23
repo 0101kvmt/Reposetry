@@ -20,15 +20,20 @@ export const ModalContent = styled.div`
    padding: 20px;
    border: 1px solid #888;
    width: 80%;
-   height: 50%;
+   height: 80%;
+   overflow-y: scroll;
 `;
 
 export const ModalBlock = styled.div`
-  background-color: blue;
+  background-color: #96beff;
   border-radius: 15px;
   width: 95%;
   padding: 15px;
   margin: 10px;
+
+  &:hover {
+    background-color: #72a8ff;
+  }
 `;
 
 export const ModalText = styled.p`
@@ -42,15 +47,12 @@ export const ModalScroll = styled.div`
 
 `;
 
+export const ModalLink = styled.a`
+  color: black;
+`;
 export const CloseButton = styled.div`
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 `;
-
-export const LinkStyle = {
-  textDecoration: 'none',
-  color: 'white'
-
-}
