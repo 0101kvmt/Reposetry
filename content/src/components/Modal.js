@@ -23,6 +23,25 @@ export const ModalContent = styled.div`
    height: 50%;
 `;
 
+export const ModalBlock = styled.div`
+  background-color: blue;
+  border-radius: 15px;
+  width: 95%;
+  padding: 15px;
+  margin: 10px;
+`;
+
+export const ModalText = styled.p`
+  position: relative;
+  display: inline-block;
+  color: black;
+  font-size: 15px;
+`;
+
+export const ModalScroll = styled.div`
+
+`;
+
 export const CloseButton = styled.div`
   color: #aaaaaa;
   float: right;

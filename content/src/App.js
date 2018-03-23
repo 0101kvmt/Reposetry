@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import { Modal, ModalContent } from './components/modal';
+import { Modal, ModalContent, ModalBlock, ModalText } from './components/modal';
 
 class App extends Component {
   constructor(props) {
@@ -13,10 +13,18 @@ class App extends Component {
   }
 
   render() {
+    const RepoList = this.props.reposetry.Reposetry.map((r, i) => {
+      return (
+          <ModalBlock>
+            <ModalText> {r} </ModalText>
+          </ModalBlock>
+    )});
+
     return (
       <Modal>
         <ModalContent>
-          Reposetry: {this.props.reposetry.Reposetry}
+          <ModalText> Reposetry: </ModalText>
+            {RepoList}
         </ModalContent>
       </Modal>
     );
