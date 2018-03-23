@@ -7,6 +7,7 @@ class App extends Component {
 
     this.storeUrl = this.storeUrl.bind(this);
     this.updateUrl = this.updateUrl.bind(this);
+
   }
 
   componentDidMount() {
@@ -63,6 +64,17 @@ class App extends Component {
 
       }
     }.bind(this));
+  }
+
+  deleteUrl() {
+    this.props.dispatch({
+      type: 'ADD_URL',
+      Reposetry: repoList
+    });
+
+    chrome.storage.sync.set({ReposetryList: repoList}, function() {
+      console.log('Repositry list is stored to chrome as: ' + repoList);
+   });
   }
 
   render() {
