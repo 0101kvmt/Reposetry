@@ -1,6 +1,7 @@
 const initialState = {
   errorMessage: '',
-  Reposetry: [['https://wwww.google.com']]
+  Reposetry: [['google', 'https://wwww.google.com']],
+  modalToggle: 'display'
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +12,8 @@ export default (state = initialState, action) => {
       return {...state, Reposetry: action.Reposetry}
     case 'DELETE_URL':
       return {...state, Reposetry: action.Reposetry}
+    case 'TOGGLE_MODAL':
+      return {...state, modalToggle: action.modalToggle}
     default:
       return state;
   }

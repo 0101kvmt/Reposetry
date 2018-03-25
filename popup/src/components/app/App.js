@@ -6,7 +6,7 @@ class App extends Component {
     super(props);
 
     this.storeUrl = this.storeUrl.bind(this);
-    this.updateUrl = this.updateUrl.bind(this);
+    this.openModal = this.openModal.bind(this);
 
   }
 
@@ -16,31 +16,27 @@ class App extends Component {
     chrome.storage.sync.get('ReposetryList', (val) => {
       const chromeList = val.ReposetryList;
       const reducerList = this.props.reposetry.Reposetry
+      
       if(!chromeList) {
-        this.props.dispatch({
-          type: 'GET_URL',
-          Reposetry: reducerList
-        });
-      } else {
-        this.props.dispatch({
-          type: 'GET_URL',
-          Reposetry: chromeList
-        });
-      }
-
+         this.props.dispatch({
+           type: 'GET_URL',
+           Reposetry: reducerList
+         });
+       } else {
+         this.props.dispatch({
+           type: 'GET_URL',
+           Reposetry: chromeList
+         });
+       }
     });
 
   }
 
-  updateUrl() {
+  openModal() {
 
-    console.log("updated this.props", this.props);
-    const repoList = 'ReposetryList';
-
-    chrome.storage.sync.get('ReposetryList', (val) => {
-      val.ReposetryList.map((m, i) => {
-        console.log(m);
-      });
+    this.props.dispatch({
+      type: 'TOGGLE_MODAL',
+      modalToggle: 'display'
     });
   }
 
@@ -57,11 +53,7 @@ class App extends Component {
           type: 'ADD_URL',
           Reposetry: repoList
         });
-
-        chrome.storage.sync.set({ReposetryList: repoList}, function() {
-          console.log('Repositry list is stored to chrome as: ' + repoList);
-       });
-
+        chrome.storage.sync.set({ReposetryList: repoList});
       }
     }.bind(this));
   }
@@ -79,15 +71,9 @@ class App extends Component {
 
   render() {
     console.log(this.props);
-    const reposetryList = this.props.reposetry.Reposetry.map((r, i) => {
-      return(
-      <div>{r}</div>
-      )
-    });
     return (
       <div style={{width: 200}}>
-        <button onClick={this.updateUrl}>update data</button>
-        Reposetry: {reposetryList}
+        <button onClick={this.openModal}>ABRIR</button>
         <div onClick={this.storeUrl}>STORE</div>
       </div>
     );

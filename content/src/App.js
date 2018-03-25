@@ -12,9 +12,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      display: 'none'
+      display: this.props.reposetry.modalToggle
     };
 
+    this.closeModal = this.closeModal.bind(this);
     this.deleteUrl = this.deleteUrl.bind(this);
   }
 
@@ -24,25 +25,25 @@ class App extends Component {
 
 
   closeModal() {
-    console.log("closing modal");
+    this.props.dispatch({
+      type: 'TOGGLE_MODAL',
+      modalToggle: 'close'
+    });
+    this.setState({display: this.props.reposetry.modalToggle});
+    console.log(this.props);
   }
+
   deleteUrl(url, i) {
-    console.log(url);
-    console.log("index", i);
-    console.log(this.props.reposetry.Reposetry);
     const Repo = this.props.reposetry.Reposetry;
 
     Repo.splice(i, 1);
-    console.log("new Repo", Repo);
 
     this.props.dispatch({
       type: 'DELETE_URL',
       Reposetry: Repo
     });
 
-    chrome.storage.sync.set({ReposetryList: Repo}, function() {
-      console.log('Repositry list is stored to chrome as: ' + Repo);
-    });
+    chrome.storage.sync.set({ReposetryList: Repo});
   }
 
   render() {
@@ -57,10 +58,10 @@ class App extends Component {
     });
 
     return (
-      <Modal display="block">
+      <Modal display={this.props.reposetry.modalToggle === 'display' ? 'block' : 'none'}>
         <ModalContainer>
           <ModalText> Reposetry: </ModalText>
-          <CloseButton>x</CloseButton>
+          <CloseButton onClick={this.closeModal}>x</CloseButton>
           <ModalContent>
             {RepoList.length === 0 ? <ModalText> No reposetry stored :O </ModalText> : RepoList }
           </ModalContent>
