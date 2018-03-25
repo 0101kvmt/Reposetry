@@ -11,48 +11,58 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      display: 'none'
+    };
+
+    this.deleteUrl = this.deleteUrl.bind(this);
   }
 
   componentDidMount() {
     console.log("app component loaded");
   }
 
-  const display = {
-    display: block
-  }
 
   closeModal() {
     console.log("closing modal");
   }
-  deleteUrl(url) {
+  deleteUrl(url, i) {
     console.log(url);
-    // this.props.dispatch({
-    //   type: 'DELETE_URL',
-    //   Reposetry: repoList
-    // });
-    //
-    // chrome.storage.sync.set({ReposetryList: repoList}, function() {
-    //   console.log('Repositry list is stored to chrome as: ' + repoList);
-    // });
+    console.log("index", i);
+    console.log(this.props.reposetry.Reposetry);
+    const Repo = this.props.reposetry.Reposetry;
+
+    Repo.splice(i, 1);
+    console.log("new Repo", Repo);
+
+    this.props.dispatch({
+      type: 'DELETE_URL',
+      Reposetry: Repo
+    });
+
+    chrome.storage.sync.set({ReposetryList: Repo}, function() {
+      console.log('Repositry list is stored to chrome as: ' + Repo);
+    });
   }
 
   render() {
     const RepoList = this.props.reposetry.Reposetry.map((r, i) => {
-      return (
-          <ModalBlock>
-            <ModalText> {r[0]} </ModalText>
-            <ModalLink href={r[1]} target="_blank"> {r[1]} </ModalLink>
-            <ModalDelete>x</ModalDelete>
-          </ModalBlock>
-    )});
+        return (
+            <ModalBlock>
+              <ModalText> {r[0]} </ModalText>
+              <ModalLink href={r[1]} target="_blank"> {r[1]} </ModalLink>
+              <ModalDelete onClick={() => {this.deleteUrl(r, i)}}>x</ModalDelete>
+            </ModalBlock>
+      )
+    });
 
     return (
-      <Modal>
+      <Modal display="block">
         <ModalContainer>
           <ModalText> Reposetry: </ModalText>
           <CloseButton>x</CloseButton>
           <ModalContent>
-            {RepoList}
+            {RepoList.length === 0 ? <ModalText> No reposetry stored :O </ModalText> : RepoList }
           </ModalContent>
         </ModalContainer>
       </Modal>

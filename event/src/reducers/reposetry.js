@@ -1,6 +1,6 @@
 const initialState = {
   errorMessage: '',
-  Reposetry: ['https://wwww.google.com']
+  Reposetry: [['https://wwww.google.com']]
 };
 
 export default (state = initialState, action) => {
@@ -8,6 +8,8 @@ export default (state = initialState, action) => {
     case 'ADD_URL':
       return {...state, Reposetry: action.Reposetry}
     case 'GET_URL':
+      return {...state, Reposetry: action.Reposetry}
+    case 'DELETE_URL':
       return {...state, Reposetry: action.Reposetry}
     default:
       return state;

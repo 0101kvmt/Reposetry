@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Modal = styled.div`
-  display: ${props => props.display.main};
+  display: ${props => props.display};
   position: fixed;
   padding-top: 85px;
   z-index: 9999;
@@ -67,11 +67,12 @@ export const ModalDelete = styled.a`
   text-decoration: none;
   font-size: 24px;
   font-family: Raleway;
-  right: 30px;
-  top: 20px;
+  right: 21px;
+  top: 10px;
 
   &:hover {
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
@@ -86,5 +87,6 @@ export const CloseButton = styled.a`
 
   &:hover {
     text-decoration: none;
+    cursor: pointer;
   }
 `;
